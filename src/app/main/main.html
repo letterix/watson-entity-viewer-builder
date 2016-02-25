@@ -1,0 +1,27 @@
+<div layout="vertical" layout-fill>
+
+  <md-content>
+
+    <section class="jumbotron search-header">
+      <h1>Entity Viewer</h1>
+      <md-input-container class="search">
+        <label class="md-no-float">Search</label>
+        <input type="text" ng-model="user.name"  my-enter="vm.search()">
+      </md-input-container>
+    </section>
+
+    <div class="techs" layout-align="center">
+      <md-card ng-repeat="awesomeThing in vm.awesomeThings | orderBy:'rank'">
+        <md-card-content>
+          <img class="pull-right" ng-src="assets/images/entity.png" alt="{{ awesomeThing.title }}">
+          <h3 class="md-title">{{ awesomeThing.name }}</h3>
+          <p>{{ awesomeThing.description }}</p>
+        </md-card-content>
+        <div class="md-action-buttons">
+          <md-button ng-href="{{ awesomeThing.url }}">Website</md-button>
+        </div>
+      </md-card>
+    </div>
+  </md-content>
+
+</div>
