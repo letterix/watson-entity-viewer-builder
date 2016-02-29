@@ -6,32 +6,31 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, webDevTec, watsonEntityApi) {
+  function MainController($timeout, webDevTec, Search) {
     var vm = this;
+    window.vm = vm;
 
     vm.awesomeThings = [];
-    vm.entities = {};
+    vm.entities = [];
     vm.classAnimation = '';
     vm.creationDate = 1456420904899;
     vm.search = search;
+    vm.searchString = '';
 
     activate();
 
     function activate() {
-      getWebDevTec();
-      getEntities();
       $timeout(function() {
         vm.classAnimation = 'rubberBand';
       }, 4000);
     }
 
-    function search() {
-      console.log('searching!');
+    function search(searchString) {
+      Search.query({search: searchString})
+        .$promise.then(function(result) {
+          vm.entities = result;
+        });
     };
-
-    function getEntities() {
-      vm.entities = watsonEntityApi.getEntities();
-    }
 
     function getWebDevTec() {
       vm.awesomeThings = webDevTec.getTec();
