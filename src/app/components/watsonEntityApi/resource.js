@@ -15,7 +15,7 @@
 
             methods = angular.extend(defaults, methods);
             //var resource = $resource('//localhost:6001/api' + path, params, methods);
-            var resource = $resource('//watson-entity-finder.eu-gb.mybluemix.net/api' + path, params, methods);
+            var resource = $resource('//localhost:6001/api' + path, params, methods);
             resource.prototype.$save = function() {
                 if(!this._id) {
                     return this.$create();
