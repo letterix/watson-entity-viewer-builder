@@ -10,20 +10,25 @@
       </md-input-container>
     </section>
 
-    <div class="techs" layout-align="center">
+    <div class="results" ng-if="vm.activated">
+      <h2> Results </h2>
+    </div>
+    <div class="techs">
       <md-card ng-repeat="entity in vm.entities">
-        <md-card-content>
+        <div flex layout="row">
+        <md-card-content flex >
           <img class="pull-right" ng-src="assets/images/entity.png" alt="{{ entity.name }}">
           <h3 class="md-title">{{ entity.name }}</h3>
-          <p>{{ entity['affiliation-current']['affiliation']['ip-doc']['afdispname'] }} </p>
-          <h4>
-            <i class="fa fa-bolt fa-2x" aria-hidden="true"></i> {{ entity.score | number:0 }} |
+          <p class="affiliation">{{ entity['affiliation-current']['affiliation']['ip-doc']['afdispname'] }} </p>
+          <h4 class="stats">
+            <i class="fa fa-star fa-2x" aria-hidden="true"></i> {{ entity.score | number:0 }} <br>
             <i class="fa fa-file-pdf-o" aria-hidden="true"></i> {{ entity.articles.length }} |
             <i class="fa fa-header" aria-hidden="true"></i> {{ entity['h-index'] }} |
             <i class="fa fa-commenting-o" aria-hidden="true"></i> {{ entity['cited-by-count'] }} |
             <i class="fa fa-inbox" aria-hidden="true"></i> {{ entity['document-count'] }}
           </h4>
         </md-card-content>
+        </div>
       </md-card>
     </div>
   </md-content>
