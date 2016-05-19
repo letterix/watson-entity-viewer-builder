@@ -6,7 +6,7 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, Search) {
+  function MainController($scope, $timeout, $mdDialog, $mdMedia, Search) {
     var vm = this;
     window.vm = vm;
 
@@ -14,9 +14,14 @@
     vm.entities = [];
     vm.classAnimation = '';
     vm.creationDate = 1456420904899;
-    vm.search = search;
     vm.searchString = '';
     vm.activated = false;
+
+    vm.search = search;
+    vm.inspectEntity = inspectEntity;
+    vm.showAdvanced = showAdvanced;
+
+    vm.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 
     activate();
 
@@ -2388,6 +2393,51 @@
       "title":"Endogenous transmembrane protein UT2 inhibits pSTAT3 and suppresses hematological malignancy",
       "journalName":"Journal of Clinical Investigation"}],"id":"7004094901",
       "score":444.816}];
+    };
+
+    function showAdvanced(ev, entity) {
+      var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
+
+      $mdDialog.show({
+        controller: ModalController,
+        templateUrl: '/app/main/modal/modal.view.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose:true,
+        fullscreen: useFullScreen,
+        locals: {
+          vm: vm,
+          entity: entity
+        }
+      })
+      .then(function(answer) {
+        $scope.status = 'You said the information was "' + answer + '".';
+      }, function() {
+        $scope.status = 'You cancelled the dialog.';
+      });
+
+
+
+      $scope.$watch(function() {
+        return $mdMedia('xs') || $mdMedia('sm');
+      }, function(wantsFullScreen) {
+        vm.customFullscreen = (wantsFullScreen === true);
+      });
+
+    };
+
+    function inspectEntity(entity) {
+      var locals = {
+          entity: entity,
+          callback: activate
+      };
+    }
+  }
+
+  function ModalController($mdDialog, vm, entity) {
+
+    vm.hide = function () {
+      $mdDialog.hide();
     }
   }
 })();

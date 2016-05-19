@@ -4,7 +4,6 @@
 
   angular
     .module('watsonEntityViewer')
-    .constant('malarkey', malarkey)
     .constant('moment', moment);
 
 })();
