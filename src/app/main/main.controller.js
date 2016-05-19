@@ -6,7 +6,7 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, webDevTec, Search) {
+  function MainController($timeout, Search) {
     var vm = this;
     window.vm = vm;
 
@@ -34,14 +34,6 @@
         });
       };
     */
-
-    function getWebDevTec() {
-      vm.awesomeThings = webDevTec.getTec();
-
-      angular.forEach(vm.awesomeThings, function(awesomeThing) {
-        awesomeThing.rank = Math.random();
-      });
-    }
 
     function search(searchString) {
       vm.activated = true;

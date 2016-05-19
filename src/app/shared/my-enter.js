@@ -16,7 +16,6 @@
                         event.preventDefault();
                     }
                 });
-            };
-        };
-
+            }
+        }
 })();
