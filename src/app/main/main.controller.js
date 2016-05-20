@@ -19,7 +19,6 @@
 
     vm.search = search;
     vm.inspectEntity = inspectEntity;
-    vm.showAdvanced = showAdvanced;
 
     vm.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 
@@ -2395,25 +2394,19 @@
       "score":444.816}];
     };
 
-    function showAdvanced(ev, entity) {
+    function inspectEntity(ev, entity) {
       var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
-
+      vm.entity = entity;
       $mdDialog.show({
-        controller: ModalController,
+        controller: function () {
+          return vm;
+        },
+        controllerAs: 'vm',
         templateUrl: '/app/main/modal/modal.view.html',
         parent: angular.element(document.body),
         targetEvent: ev,
         clickOutsideToClose:true,
-        fullscreen: useFullScreen,
-        locals: {
-          vm: vm,
-          entity: entity
-        }
-      })
-      .then(function(answer) {
-        $scope.status = 'You said the information was "' + answer + '".';
-      }, function() {
-        $scope.status = 'You cancelled the dialog.';
+        fullscreen: useFullScreen
       });
 
 
@@ -2426,18 +2419,5 @@
 
     };
 
-    function inspectEntity(entity) {
-      var locals = {
-          entity: entity,
-          callback: activate
-      };
-    }
-  }
-
-  function ModalController($mdDialog, vm, entity) {
-
-    vm.hide = function () {
-      $mdDialog.hide();
-    }
   }
 })();
