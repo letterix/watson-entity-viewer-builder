@@ -36,8 +36,8 @@
       The related journals (s)he has are: 
       <ul ng-repeat="article in vm.entity['articles']">
         <li> 
-          <i>{{ article['title'] }}</i> <br>
-          published in <i>{{ article['journalName'] }}</i>  <br>
+          <b>{{ article['title'] }}</b> <br>
+          published in <b>{{ article['journalName'] }}</b>  <br>
           <span ng-if="article['doi']">
             DOI: {{ article['doi'] }}
           </span>
