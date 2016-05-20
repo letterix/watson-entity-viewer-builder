@@ -10,19 +10,26 @@
       </md-input-container>
     </section>
 
-    <div class="results" ng-if="vm.activated">
-      <h2> Results </h2>
+  <div class="results" layout="row" layout-sm="column" ng-if="vm.activated">
+    <div flex></div>
+    <div class="titel" flex> Results </div>
+    <div class="info" flex>
+        <i class="fa fa-star fa-2x" aria-hidden="true"></i> &nbsp;&nbsp;Watson Entity score <br>
+        <i class="fa fa-file-pdf-o" aria-hidden="true"></i> &nbsp;&nbsp;Number of related articles in last 6 years<br>
+        <i class="fa fa-header" aria-hidden="true"></i> &nbsp;&nbsp;Author's Hirsch index <br>
+        <i class="fa fa-commenting-o" aria-hidden="true"></i> &nbsp;&nbsp;Total number of citations on the related articles <br>
+        <i class="fa fa-inbox" aria-hidden="true"></i> &nbsp;&nbsp;Total number of published articles
     </div>
+  </div>
 
     <div class="techs">
       <md-card ng-repeat="entity in vm.entities" ng-click="vm.showAdvanced($event, entity)">
         <div flex layout="row">
           <md-card-content flex >
-            <img class="pull-right" ng-src="assets/images/entity.png" alt="{{ entity.name }}">
+            <h2 class="pull-right"> <i class="fa fa-star fa-2x" aria-hidden="true"></i> {{ entity.score | number:0 }} </h2>
             <h3 class="md-title">{{ entity.name }}</h3>
             <p class="affiliation">{{ entity['affiliation-current']['affiliation']['ip-doc']['afdispname'] }} </p>
             <h4 class="stats">
-              <i class="fa fa-star fa-2x" aria-hidden="true"></i> {{ entity.score | number:0 }} <br>
               <i class="fa fa-file-pdf-o" aria-hidden="true"></i> {{ entity.articles.length }} |
               <i class="fa fa-header" aria-hidden="true"></i> {{ entity['h-index'] }} |
               <i class="fa fa-commenting-o" aria-hidden="true"></i> {{ entity['cited-by-count'] }} |

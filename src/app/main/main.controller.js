@@ -23,7 +23,7 @@
 
     vm.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 
-    activate();
+    //activate();
 
     function activate() {
       $timeout(function() {
@@ -39,6 +39,52 @@
         });
       };
     */
+
+    function showAdvanced(ev, entity) {
+      var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
+
+      $mdDialog.show({
+        controller: ModalController,
+        templateUrl: '/app/main/modal/modal.view.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose:true,
+        fullscreen: useFullScreen,
+        locals: {
+          vm: vm,
+          entity: entity
+        }
+      })
+      .then(function(answer) {
+        $scope.status = 'You said the information was "' + answer + '".';
+      }, function() {
+        $scope.status = 'You cancelled the dialog.';
+      });
+
+
+
+      $scope.$watch(function() {
+        return $mdMedia('xs') || $mdMedia('sm');
+      }, function(wantsFullScreen) {
+        vm.customFullscreen = (wantsFullScreen === true);
+      });
+
+    };
+
+    function inspectEntity(entity) {
+      var locals = {
+          entity: entity,
+          callback: activate
+      };
+    }
+  }
+
+  function ModalController($mdDialog, vm, entity) {
+
+    vm.hide = function () {
+      $mdDialog.hide();
+    }
+  }
 
     function search(searchString) {
       vm.activated = true;
@@ -2395,49 +2441,4 @@
       "score":444.816}];
     };
 
-    function showAdvanced(ev, entity) {
-      var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && vm.customFullscreen;
-
-      $mdDialog.show({
-        controller: ModalController,
-        templateUrl: '/app/main/modal/modal.view.html',
-        parent: angular.element(document.body),
-        targetEvent: ev,
-        clickOutsideToClose:true,
-        fullscreen: useFullScreen,
-        locals: {
-          vm: vm,
-          entity: entity
-        }
-      })
-      .then(function(answer) {
-        $scope.status = 'You said the information was "' + answer + '".';
-      }, function() {
-        $scope.status = 'You cancelled the dialog.';
-      });
-
-
-
-      $scope.$watch(function() {
-        return $mdMedia('xs') || $mdMedia('sm');
-      }, function(wantsFullScreen) {
-        vm.customFullscreen = (wantsFullScreen === true);
-      });
-
-    };
-
-    function inspectEntity(entity) {
-      var locals = {
-          entity: entity,
-          callback: activate
-      };
-    }
-  }
-
-  function ModalController($mdDialog, vm, entity) {
-
-    vm.hide = function () {
-      $mdDialog.hide();
-    }
-  }
 })();

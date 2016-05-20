@@ -76,13 +76,20 @@ section.jumbotron {
 }
 
 .results {
-  text-align: center;
-  h2 {
-    font-size: 3em;
+  .titel {
+    font-size: 4em;
     color: grey;
+    text-align: center;
+    vertical-align: center;
+  }
+  .info {
+    float: right;
+    font-size: 0.7em;
   }
 }
-
+.fa-star {
+  color: #cccc00;
+}
 .techs {
   display: flex;
   flex-flow: row wrap;
@@ -97,10 +104,11 @@ section.jumbotron {
     md-card-content{
       position: relative;
 
-      img.pull-right {
+      .pull-right {
         float: right;
-        width: 100px;
+        font-size: 1.1em;
       }
+        
       .affiliation {
         font-size: 0.8em;
         margin-top: 1px;
@@ -114,9 +122,6 @@ section.jumbotron {
       .stats {
         position: absolute;
         bottom: 0px;
-        .fa-star {
-          color: #cccc00;
-        }
       }
     }
   }
