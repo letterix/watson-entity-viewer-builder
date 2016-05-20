@@ -10,17 +10,17 @@
       </md-input-container>
     </section>
 
-  <div class="results" layout="row" layout-sm="column" ng-if="vm.activated">
-    <div flex></div>
-    <div class="titel" flex> Results </div>
-    <div class="info" flex>
-        <i class="fa fa-star fa-2x" aria-hidden="true"></i> &nbsp;&nbsp;Watson Entity score <br>
-        <i class="fa fa-file-pdf-o" aria-hidden="true"></i> &nbsp;&nbsp;Number of related articles in last 6 years<br>
-        <i class="fa fa-header" aria-hidden="true"></i> &nbsp;&nbsp;Author's Hirsch index <br>
-        <i class="fa fa-commenting-o" aria-hidden="true"></i> &nbsp;&nbsp;Total number of citations on the related articles <br>
-        <i class="fa fa-inbox" aria-hidden="true"></i> &nbsp;&nbsp;Total number of published articles
+    <div class="results" layout="row" layout-sm="column" ng-if="vm.activated">
+      <div flex></div>
+      <div class="titel" flex> Results </div>
+      <div class="info" flex>
+          <i class="fa fa-star fa-2x" aria-hidden="true"></i> &nbsp;&nbsp;Watson Entity score <br>
+          <i class="fa fa-file-pdf-o" aria-hidden="true"></i> &nbsp;&nbsp;Number of related articles in last 6 years<br>
+          <i class="fa fa-header" aria-hidden="true"></i> &nbsp;&nbsp;Author's Hirsch index <br>
+          <i class="fa fa-commenting-o" aria-hidden="true"></i> &nbsp;&nbsp;Total number of citations <br>
+          <i class="fa fa-inbox" aria-hidden="true"></i> &nbsp;&nbsp;Total number of published articles
+      </div>
     </div>
-  </div>
 
     <div class="techs">
       <md-card ng-repeat="entity in vm.entities" ng-click="vm.inspectEntity($event, entity)">
@@ -39,6 +39,7 @@
         </div>
       </md-card>
     </div>
+    
   </md-content>
 
 </div>

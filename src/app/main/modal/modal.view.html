@@ -14,23 +14,47 @@
   <div class="md-dialog-content">
     <h2>{{ vm.entity.name }}</h2>
     <p>
-      The mango is a juicy stone fruit belonging to the genus Mangifera, consisting of numerous tropical fruiting trees, cultivated mostly for edible fruit. The majority of these species are found in nature as wild mangoes. They all belong to the flowering plant family Anacardiaceae. The mango is native to South and Southeast Asia, from where it has been distributed worldwide to become one of the most cultivated fruits in the tropics.
-    </p>
-
-    <img style="margin: auto; max-width: 100%;" alt="Lush mango tree" src="img/mangues.jpg">
-
-    <p>
-      The highest concentration of Mangifera genus is in the western part of Malesia (Sumatra, Java and Borneo) and in Burma and India. While other Mangifera species (e.g. horse mango, M. foetida) are also grown on a more localized basis, Mangifera indica&mdash;the "common mango" or "Indian mango"&mdash;is the only mango tree commonly cultivated in many tropical and subtropical regions.
+      Watson Enitiy score: {{ vm.entity['score'] | number:0 }} 
+      <!--Is given a score of {{ vm.entity['score'] }} based on the related articles' citation count, the SCImago Journal Rank value for the publishing journal for the articles, the SCImago Institution Rank for the institution the author has written the article at and lastly the author's Hirsch index.-->
     </p>
     <p>
-      It originated in Indian subcontinent (present day India and Pakistan) and Burma. It is the national fruit of India, Pakistan, and the Philippines, and the national tree of Bangladesh. In several cultures, its fruit and leaves are ritually used as floral decorations at weddings, public celebrations, and religious ceremonies.
+      Current works at {{ vm.entity['affiliation-current']['affiliation']['ip-doc']['afdispname'] }} <br>
+      located in {{ vm.entity['affiliation-current']['affiliation']['ip-doc']['address']['city'] }}, {{ vm.entity['affiliation-current']['affiliation']['ip-doc']['address']['country'] }}. <br>
+      <span ng-if="vm.entity['affiliation-current']['affiliation']['ip-doc']['org-URL']">
+        <a href="{{ vm.entity['affiliation-current']['affiliation']['ip-doc']['org-URL'] }}" target="_blank"> Link to the institution</a>
+      </span>
+    </p>
+
+    <!--<img style="margin: auto; max-width: 100%;" alt="Lush mango tree" src="img/mangues.jpg">-->
+
+    <p>
+      Has written {{ vm.entity['document-count'] }} articles so far during the career. <br>
+      The articles has been cited a total of {{ vm.entity['cited-by-count'] }} times. <br>
+      Has a Hirsch index of {{ vm.entity['h-index'] }}.
+    </p>
+    <p>
+      The related journals (s)he has are: 
+      <ul ng-repeat="article in vm.entity['articles']">
+        <li> 
+          <i>{{ article['title'] }}</i> <br>
+          published in <i>{{ article['journalName'] }}</i>  <br>
+          <span ng-if="article['doi']">
+            DOI: {{ article['doi'] }}
+          </span>
+          <!--
+            Lägg till SJR, SIR och number of citations.
+            Lägg till co-authors.
+            Lägg till main author?
+          -->
+        </li>
+      </ul>
     </p>
   </div>
 </md-dialog-content>
 
 <md-dialog-actions layout="row">
-  <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
-    More on Wikipedia
+  <md-button href="https://www.google.se/?q={{ vm.entity.name }}" target="_blank" md-autofocus>
+    Search on Google
   </md-button>
   <span flex></span>
   <md-button ng-click="answer('not useful')">
