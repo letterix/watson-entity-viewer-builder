@@ -4,24 +4,54 @@
 
     <section class="jumbotron search-header">
       <h1>Entity Viewer</h1>
-      <md-input-container class="search">
-        <label class="md-no-float">Search</label>
-        <input class="search-box" type="text" ng-model="vm.searchString"  my-enter="vm.search(vm.searchString)">
+      <md-input-container class="search" ng-if='!vm.useRFA'>
+        <label class="md-no-float search-label">Search</label>
+        <input class="search-box" type="text" ng-model="vm.searchString" my-enter="vm.search(vm.searchString)">
       </md-input-container>
+      <form name='RFAform' ng-if='vm.useRFA' ng-submit="vm.rfa()">
+        <md-input-container layout="row" layout-align="center center">
+          <lf-ng-md-file-input layout-align="center center" class='rfa-file' lf-files='file' my-enter="vm.rfa()" lf-placeholder="input RFA"> </lf-ng-md-file-input>
+        </md-input-container>
+        <md-input-container layout="row" layout-align="center center">
+          <md-button class="md-raised" type='submit'>Search</md-button>
+        </md-input-container>
+      </form>
+      <div layout="row" layout-align="center">
+          <md-switch class="md-primary" md-no-ink aria-label="Switch No Ink" ng-model="vm.useRFA" >
+            Input RFA
+          </md-switch>
+      </div>
     </section>
 
     <div class="results" layout="row" layout-sm="column" ng-if="vm.activated">
       <div flex></div>
       <div class="titel" flex> Results </div>
       <div class="info" flex>
-          <i class="fa fa-star fa-2x" aria-hidden="true"></i> &nbsp;&nbsp;Watson Entity score <br>
-          <i class="fa fa-file-pdf-o" aria-hidden="true"></i> &nbsp;&nbsp;Number of related articles in last 6 years<br>
-          <i class="fa fa-header" aria-hidden="true"></i> &nbsp;&nbsp;Author's Hirsch index <br>
-          <i class="fa fa-commenting-o" aria-hidden="true"></i> &nbsp;&nbsp;Total number of citations <br>
-          <i class="fa fa-inbox" aria-hidden="true"></i> &nbsp;&nbsp;Total number of published articles
+        <table>
+          <tr>
+            <td class='center'> <i class="fa fa-star fa-2x" aria-hidden="true"></i> </td>
+            <td>Watson Entity score </td>
+          </tr>
+          <tr>
+            <td class='center'> <i class="fa fa-file-pdf-o" aria-hidden="true"></i> </td>
+            <td>Number of related articles in last 6 years </td>
+          </tr>
+          <tr>
+            <td class='center'> <i class="fa fa-header" aria-hidden="true"></i> </td>
+            <td>Author's Hirsch index </td>
+          </tr>
+          <tr>
+            <td class='center'> <i class="fa fa-commenting-o" aria-hidden="true"></i> </td>
+            <td>Total number of citations </td>
+          </tr>
+          <tr>
+            <td class='center'> <i class="fa fa-inbox" aria-hidden="true"></i> </td>
+            <td>Total number of published articles </td>
+          </tr>
+        </table>
       </div>
     </div>
-
+    <br>
     <div class="techs">
       <md-card ng-repeat="entity in vm.entities" ng-click="vm.inspectEntity($event, entity)">
         <div flex layout="row">
