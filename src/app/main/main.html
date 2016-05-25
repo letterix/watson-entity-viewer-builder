@@ -5,14 +5,14 @@
     <section class="jumbotron search-header">
       <h1>Entity Viewer</h1>
 
-      <form name='SearchForm' ng-if='!vm.useRFA' ng-submit="vm.search(vm.searchstring)">
+      <form name='SearchForm' class='fade' ng-hide='vm.useRFA' ng-submit="vm.search(vm.searchstring)">
         <md-input-container class="search">
           <label class="md-no-float search-label">Search</label>
           <input class="search-box" type="text" ng-model="vm.searchString">
         </md-input-container>
       </form>
 
-      <form name='RFAform' class='RFAform' ng-if='vm.useRFA' ng-submit="vm.rfa(RFAfile)">
+      <form name='RFAform' class='RFAform fade' ng-hide='!vm.useRFA' ng-submit="vm.rfa(RFAfile)">
         <md-input-container layout="row" layout-align="center center">
           <lf-ng-md-file-input name="file" class='RFAinput' lf-required lf-files='RFAfile' accept="text/plain" lf-mimetype="text/plain" lf-placeholder="input RFA"> </lf-ng-md-file-input>
         </md-input-container>
