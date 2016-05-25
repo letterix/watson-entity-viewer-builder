@@ -131,6 +131,10 @@ section.jumbotron {
   }
 }
 
+.main-content {
+  width: 100%;
+}
+
 .search-header {
   h1 {
     color: grey;
@@ -146,18 +150,31 @@ section.jumbotron {
   position: relative;
 }
 
-.main-content {
-  width: 100%;
-}
-
 .search-box {
   position: relative;
   text-align: center;
 }
-.rfa-file {
+
+// RFA input styling
+.md-primary {
+  color: rgba(0,0,0,0.26);
+  font-size: 0.6em;
+}
+
+.RFAinput {
+  position: relative;
+  width: 600px;
   text-align: center;
   color: grey;
 }
+.RFAsubmit {
+  width: 120px;
+}
+.RFAinputError {
+  color: blue;
+  font-size: 0.7em;
+}
+
 
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject
@@ -184,9 +201,5 @@ section.jumbotron {
 
 .center {
   text-align: center;
-}
-
-.md-primary {
-  color: rgba(0,0,0,0.26);
-  font-size: 0.6em;
+  width: 35px;
 }

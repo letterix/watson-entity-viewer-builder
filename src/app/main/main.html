@@ -4,22 +4,31 @@
 
     <section class="jumbotron search-header">
       <h1>Entity Viewer</h1>
-      <md-input-container class="search" ng-if='!vm.useRFA'>
-        <label class="md-no-float search-label">Search</label>
-        <input class="search-box" type="text" ng-model="vm.searchString" my-enter="vm.search(vm.searchString)">
-      </md-input-container>
-      <form name='RFAform' ng-if='vm.useRFA' ng-submit="vm.rfa()">
-        <md-input-container layout="row" layout-align="center center">
-          <lf-ng-md-file-input layout-align="center center" class='rfa-file' lf-files='file' my-enter="vm.rfa()" lf-placeholder="input RFA"> </lf-ng-md-file-input>
-        </md-input-container>
-        <md-input-container layout="row" layout-align="center center">
-          <md-button class="md-raised" type='submit'>Search</md-button>
+
+      <form name='SearchForm' ng-if='!vm.useRFA' ng-submit="vm.search(vm.searchstring)">
+        <md-input-container class="search">
+          <label class="md-no-float search-label">Search</label>
+          <input class="search-box" type="text" ng-model="vm.searchString">
         </md-input-container>
       </form>
+
+      <form name='RFAform' ng-if='vm.useRFA' ng-submit="vm.rfa(RFAfile)">
+        <md-input-container layout="row" layout-align="center center">
+          <lf-ng-md-file-input name="file" class='RFAinput' lf-required lf-files='RFAfile' accept="text/plain" lf-mimetype="text/plain" lf-placeholder="input RFA"> </lf-ng-md-file-input>
+        </md-input-container>
+        <div ng-messages="RFAform.file.$error">
+          <div class='RFAinputError' ng-message="mimetype" ng-show='!RFAform.$invalid'>The RFA needs to be in a *.txt file</div>
+        </div>
+        <md-input-container layout="row" layout-align="center center">
+          <md-button type="submit" ng-disabled="RFAform.$invalid" class="md-raised md-primary RFAsubmit">Search</md-button> 
+          <!--<md-button class="md-raised" type='submit'>Search</md-button>-->
+        </md-input-container>
+      </form>
+
       <div layout="row" layout-align="center">
-          <md-switch class="md-primary" md-no-ink aria-label="Switch No Ink" ng-model="vm.useRFA" >
-            Input RFA
-          </md-switch>
+        <md-switch class="md-primary" md-no-ink aria-label="Switch No Ink" ng-model="vm.useRFA" >
+          Input RFA
+        </md-switch>
       </div>
     </section>
 
@@ -51,7 +60,9 @@
         </table>
       </div>
     </div>
+
     <br>
+    
     <div class="techs">
       <md-card ng-repeat="entity in vm.entities" ng-click="vm.inspectEntity($event, entity)">
         <div flex layout="row">
