@@ -32,35 +32,23 @@
     function activate() {
       vm.haveResults = false;
       var loadingScreen = showLoadingScreen();
-      $timeout(function() {
-        vm.classAnimation = 'rubberBand';
-      }, 5000)
+      $timeout(function() {}, 2000)
       .then( function() {
         vm.haveResults = true;
-        loadingScreen.finish();
+        loadingScreen.updateLoadingHtml(getSecondLoadingScreen());
+        $timeout(function() {}, 2000)
+          .then( function() {
+            loadingScreen.finish();
+          });
       });
     }
 
 
     function showLoadingScreen() {
-      var html = '<p class="loading-message">Searching, retrieving and ranking researchers.</p>';
-      html += '<div class="sk-cube-grid">';
-      html += '<div class="sk-cube sk-cube1"></div>';
-      html += '<div class="sk-cube sk-cube2"></div>';
-      html += '<div class="sk-cube sk-cube3"></div>';
-      html += '<div class="sk-cube sk-cube4"></div>';
-      html += '<div class="sk-cube sk-cube5"></div>';
-      html += '<div class="sk-cube sk-cube6"></div>';
-      html += '<div class="sk-cube sk-cube7"></div>';
-      html += '<div class="sk-cube sk-cube8"></div>';
-      html += '<div class="sk-cube sk-cube9"></div>';
-      html += '</div>'
-      html += '<p class="loading-message">This might take a couple of minutes.</p>';;
-
       return window.pleaseWait({
-        logo: "assets/images/logo_small.gif",
+        logo: "assets/images/logo-small.gif",
         backgroundColor: 'white',
-        loadingHtml: html
+        loadingHtml: getInitialLoadingScreen()
       });
     }
 
@@ -71,6 +59,40 @@
         });
       };
     */
+
+    function getInitialLoadingScreen() {
+      var html = '<p class="loading-message">Searching through data sources for researchers...</p>';
+      html += '<div class="sk-cube-grid">';
+      html += '<div class="sk-cube sk-cube1"></div>';
+      html += '<div class="sk-cube sk-cube2"></div>';
+      html += '<div class="sk-cube sk-cube3"></div>';
+      html += '<div class="sk-cube sk-cube4"></div>';
+      html += '<div class="sk-cube sk-cube5"></div>';
+      html += '<div class="sk-cube sk-cube6"></div>';
+      html += '<div class="sk-cube sk-cube7"></div>';
+      html += '<div class="sk-cube sk-cube8"></div>';
+      html += '<div class="sk-cube sk-cube9"></div>';
+      html += '</div>';
+
+      return html;
+    }
+
+    function getSecondLoadingScreen() {
+      var html = '<p class="loading-message">Ranking researchers...</p>';
+      html += '<div class="sk-cube-grid">';
+      html += '<div class="sk-cube sk-cube1"></div>';
+      html += '<div class="sk-cube sk-cube2"></div>';
+      html += '<div class="sk-cube sk-cube3"></div>';
+      html += '<div class="sk-cube sk-cube4"></div>';
+      html += '<div class="sk-cube sk-cube5"></div>';
+      html += '<div class="sk-cube sk-cube6"></div>';
+      html += '<div class="sk-cube sk-cube7"></div>';
+      html += '<div class="sk-cube sk-cube8"></div>';
+      html += '<div class="sk-cube sk-cube9"></div>';
+      html += '</div>';
+
+      return html;
+    }
 
     function search(searchString) {
       activate();
