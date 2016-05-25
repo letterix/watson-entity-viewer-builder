@@ -1,68 +1,60 @@
 <md-dialog aria-label="{{ vm.entity.name }}"  ng-cloak>
-<form>
-<md-toolbar>
-  <div class="md-toolbar-tools">
-    <h2>{{ vm.entity.name }}</h2>
-    <span flex></span>
-    <md-button class="md-icon-button" ng-click="cancel()">
-      <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
-    </md-button>
-  </div>
-</md-toolbar>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h1>{{ vm.entity.name }}</h1>
+        <span flex></span>
+        <md-button class="md-raised" aria-label="Search on Google" href="https://www.google.se/search?q={{ vm.entity.name }} {{ vm.entity['affiliation-current']['affiliation']['ip-doc']['afdispname'] }}" target="_blank">
+          Search on Google
+        </md-button>
+      </div>
+    </md-toolbar>
 
-<md-dialog-content>
-  <div class="md-dialog-content">
-    <h2>{{ vm.entity.name }}</h2>
-    <p>
-      Watson Enitiy score: {{ vm.entity['score'] | number:0 }} 
-      <!--Is given a score of {{ vm.entity['score'] }} based on the related articles' citation count, the SCImago Journal Rank value for the publishing journal for the articles, the SCImago Institution Rank for the institution the author has written the article at and lastly the author's Hirsch index.-->
-    </p>
-    <p>
-      Current works at {{ vm.entity['affiliation-current']['affiliation']['ip-doc']['afdispname'] }} <br>
-      located in {{ vm.entity['affiliation-current']['affiliation']['ip-doc']['address']['city'] }}, {{ vm.entity['affiliation-current']['affiliation']['ip-doc']['address']['country'] }}. <br>
-      <span ng-if="vm.entity['affiliation-current']['affiliation']['ip-doc']['org-URL']">
-        <a href="{{ vm.entity['affiliation-current']['affiliation']['ip-doc']['org-URL'] }}" target="_blank"> Link to the institution</a>
-      </span>
-    </p>
-
-    <!--<img style="margin: auto; max-width: 100%;" alt="Lush mango tree" src="img/mangues.jpg">-->
-
-    <p>
-      Has written {{ vm.entity['document-count'] }} articles so far during the career. <br>
-      The articles has been cited a total of {{ vm.entity['cited-by-count'] }} times. <br>
-      Has a Hirsch index of {{ vm.entity['h-index'] }}.
-    </p>
-    <p>
-      The related journals (s)he has are: 
-      <ul ng-repeat="article in vm.entity['articles']">
-        <li> 
-          <b>{{ article['title'] }}</b> <br>
-          published in <b>{{ article['journalName'] }}</b>  <br>
-          <span ng-if="article['doi']">
-            DOI: {{ article['doi'] }}
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <h2>{{ vm.entity.name }}</h2>
+        <p>
+          Watson Enitiy score: {{ vm.entity['score'] | number:0 }} 
+          <!--Is given a score of {{ vm.entity['score'] }} based on the related articles' citation count, the SCImago Journal Rank value for the publishing journal for the articles, the SCImago Institution Rank for the institution the author has written the article at and lastly the author's Hirsch index.-->
+        </p>
+        <h3>Affiliation</h3>
+        <p>
+          Current works at {{ vm.entity['affiliation-current']['affiliation']['ip-doc']['afdispname'] }} <br>
+          located in {{ vm.entity['affiliation-current']['affiliation']['ip-doc']['address']['city'] }}, {{ vm.entity['affiliation-current']['affiliation']['ip-doc']['address']['country'] }}. <br>
+          <span ng-if="vm.entity['affiliation-current']['affiliation']['ip-doc']['org-URL']">
+            <a href="{{ vm.entity['affiliation-current']['affiliation']['ip-doc']['org-URL'] }}" target="_blank"> Link to the institution</a>
           </span>
-          <!--
-            Lägg till SJR, SIR och number of citations.
-            Lägg till co-authors.
-            Lägg till main author?
-          -->
-        </li>
-      </ul>
-    </p>
-  </div>
-</md-dialog-content>
+        </p>
 
-<md-dialog-actions layout="row">
-  <md-button href="https://www.google.se/?q={{ vm.entity.name }}" target="_blank" md-autofocus>
-    Search on Google
-  </md-button>
-  <span flex></span>
-  <md-button ng-click="answer('not useful')">
-   Not Useful
-  </md-button>
-  <md-button ng-click="answer('useful')" style="margin-right:20px;">
-    Useful
-  </md-button>
-</md-dialog-actions>
-</form>
+        <!--<img style="margin: auto; max-width: 100%;" alt="Lush mango tree" src="img/mangues.jpg">-->
+        <h3>Author stats.</h3>
+        <p>
+          Has written {{ vm.entity['document-count'] }} articles so far during the career. <br>
+          The articles has been cited a total of {{ vm.entity['cited-by-count'] }} times. <br>
+          Has a Hirsch index of {{ vm.entity['h-index'] }}.
+        </p>
+        <h3>Related articles</h3>
+        <p>
+          <ul ng-repeat="article in vm.entity['articles']">
+            <li> 
+              <b>{{ article['title'] }}</b> <br>
+              published in <b>{{ article['journalName'] }}</b>  <br>
+              <span ng-if="article['doi']">
+                DOI: {{ article['doi'] }}
+              </span>
+              <!--
+                Lägg till SJR, SIR och number of citations.
+                Lägg till co-authors.
+                Lägg till main author?
+              -->
+            </li>
+          </ul>
+        </p>
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+
+    </md-dialog-actions>
+  </form>
 </md-dialog>

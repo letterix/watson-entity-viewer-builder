@@ -75,6 +75,58 @@ section.jumbotron {
   }
 }
 
+.main-content {
+  width: 100%;
+}
+
+form {
+  height: 140px;
+}
+
+.search-header {
+  h1 {
+    color: grey;
+  }
+  font-size: 2em;
+
+  .search {
+    width: 40%;
+    margin: auto;
+
+    .search-label {
+      font-weight: bold;
+      position: relative;
+    }
+
+    .search-box {
+      position: relative;
+      text-align: center;
+      height: 60px;
+      font-size: 0.8em;
+    }
+  }
+}
+
+.RFAswitch {
+  color: rgba(0,0,0,0.26);
+  font-size: 0.6em;
+}
+.RFAform {
+  .RFAinput {
+    position: relative;
+    width: 600px;
+    text-align: center;
+    color: grey;
+  }
+  .RFAsubmit {
+    width: 120px;
+  }
+  .RFAinputError {
+    color: blue;
+    font-size: 0.7em;
+  }
+}
+
 .results {
   .titel {
     font-size: 4em;
@@ -86,10 +138,16 @@ section.jumbotron {
     float: right;
     font-size: 0.7em;
   }
+  td.center {
+    text-align: center;
+    width: 35px;
+  }
 }
+
 .fa-star {
   color: #cccc00;
 }
+
 .techs {
   display: flex;
   flex-flow: row wrap;
@@ -131,23 +189,22 @@ section.jumbotron {
   }
 }
 
-.search-header {
-  h1 {
-    color: grey;
+md-dialog {
+  .md-toolbar-tools {
+    h1 {
+      font-size: 1.4em;
+      font-weight: bold;
+    }
   }
-  font-size: 2em;
-  .search {
-    width: 40%;
-    margin: auto;
+
+  .md-dialog-content {
+    h3 {
+      margin-bottom: 2px;
+    }
+    p {
+      margin-top: 0px;
+    }
   }
-}
-
-.main-content {
-  width: 100%;
-}
-
-.search-box {
-  text-align: center;
 }
 
 /**
@@ -156,3 +213,16 @@ section.jumbotron {
  */
 // injector
 // endinjector
+
+.fade.ng-hide {
+  opacity: 0;
+}
+
+.fade.ng-hide-remove,
+.fade.ng-hide-add {
+  display: block !important;
+}
+
+.fade.ng-hide-remove {
+  transition: all linear 500ms;
+}
