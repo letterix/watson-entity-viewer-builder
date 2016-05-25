@@ -2,11 +2,11 @@
     'use strict';
 
     angular
-        .module('watsonEntityAnalyzer')
+        .module('watsonEntityViewer')
         .factory('Analyzer', Analyzer);
 
     function Analyzer(Resource) {
-        //return new Resource('/search/:search', { search: '@search' });
+    	return new Resource('/search/:search', { search: '@search' });
     }
 
 })();

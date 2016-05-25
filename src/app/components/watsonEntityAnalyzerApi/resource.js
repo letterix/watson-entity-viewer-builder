@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('watsonEntityAnalyzer')
+        .module('watsonEntityViewer')
         .factory('Resource', Resource);
 
     function Resource($resource) {

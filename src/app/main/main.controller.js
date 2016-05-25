@@ -31,14 +31,36 @@
 
     function activate() {
       vm.haveResults = false;
-      vm.loading = true;
+      var loadingScreen = showLoadingScreen();
       $timeout(function() {
         vm.classAnimation = 'rubberBand';
-      }, 2000)
+      }, 5000)
       .then( function() {
-        vm.loading = false;
         vm.haveResults = true;
-        showAlert();
+        loadingScreen.finish();
+      });
+    }
+
+
+    function showLoadingScreen() {
+      var html = '<p class="loading-message">Searching, retrieving and ranking researchers.</p>';
+      html += '<div class="sk-cube-grid">';
+      html += '<div class="sk-cube sk-cube1"></div>';
+      html += '<div class="sk-cube sk-cube2"></div>';
+      html += '<div class="sk-cube sk-cube3"></div>';
+      html += '<div class="sk-cube sk-cube4"></div>';
+      html += '<div class="sk-cube sk-cube5"></div>';
+      html += '<div class="sk-cube sk-cube6"></div>';
+      html += '<div class="sk-cube sk-cube7"></div>';
+      html += '<div class="sk-cube sk-cube8"></div>';
+      html += '<div class="sk-cube sk-cube9"></div>';
+      html += '</div>'
+      html += '<p class="loading-message">This might take a couple of minutes.</p>';;
+
+      return window.pleaseWait({
+        logo: "assets/images/pathgather.png",
+        backgroundColor: 'black',
+        loadingHtml: html
       });
     }
 

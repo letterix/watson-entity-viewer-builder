@@ -5,38 +5,30 @@
     <section class="jumbotron search-header">
       <h1>Entity Viewer</h1>
 
-      <div ng-hide="vm.loading">
-        <form name='SearchForm' class='fade' ng-hide="vm.useRFA" ng-submit="vm.search(vm.searchstring)">
-          <md-input-container class="search">
-            <label class="md-no-float search-label">Search</label>
-            <input class="search-box" type="text" ng-model="vm.searchString">
-          </md-input-container>
-        </form>
+      <form name='SearchForm' class='fade' ng-hide="vm.useRFA" ng-submit="vm.search(vm.searchstring)">
+        <md-input-container class="search">
+          <label class="md-no-float search-label">Search</label>
+          <input class="search-box" type="text" ng-model="vm.searchString">
+        </md-input-container>
+      </form>
 
-        <form name='RFAform' class='RFAform fade' ng-hide='!vm.useRFA' ng-submit="vm.rfa(RFAfile)">
-          <md-input-container layout="row" layout-align="center center">
-            <lf-ng-md-file-input name="file" class='RFAinput' lf-required lf-files='RFAfile' accept="text/plain" lf-mimetype="text/plain" lf-placeholder="input RFA"> </lf-ng-md-file-input>
-          </md-input-container>
-          <div ng-messages="RFAform.file.$error">
-            <div class='RFAinputError' ng-message="mimetype" ng-show='!RFAform.$invalid'>The RFA needs to be in a *.txt file</div>
-          </div>
-          <md-input-container layout="row" layout-align="center center">
-            <md-button type="submit" ng-disabled="RFAform.$invalid" class="md-raised md-primary RFAsubmit">Search</md-button> 
-            <!--<md-button class="md-raised" type='submit'>Search</md-button>-->
-          </md-input-container>
-        </form>
-
-        <div layout="row" layout-align="center">
-          <md-switch class="md-primary RFAswitch" md-no-ink aria-label="Switch No Ink" ng-model="vm.useRFA" >
-            Input RFA
-          </md-switch>
+      <form name='RFAform' class='RFAform fade' ng-hide='!vm.useRFA' ng-submit="vm.rfa(RFAfile)">
+        <md-input-container layout="row" layout-align="center center">
+          <lf-ng-md-file-input name="file" class='RFAinput' lf-required lf-files='RFAfile' accept="text/plain" lf-mimetype="text/plain" lf-placeholder="input RFA"> </lf-ng-md-file-input>
+        </md-input-container>
+        <div ng-messages="RFAform.file.$error">
+          <div class='RFAinputError' ng-message="mimetype" ng-show='!RFAform.$invalid'>The RFA needs to be in a *.txt file</div>
         </div>
-      </div>
+        <md-input-container layout="row" layout-align="center center">
+          <md-button type="submit" ng-disabled="RFAform.$invalid" class="md-raised md-primary RFAsubmit">Search</md-button> 
+          <!--<md-button class="md-raised" type='submit'>Search</md-button>-->
+        </md-input-container>
+      </form>
 
-      <div ng-show="vm.loading" style='color: black; font-size: 0.7em;'>
-        <p> Please wait while the application searches, retrieves and ranks potential researchers. </p>
-        <img id="spinner" ng-src="assets/images/spinner.gif">
-        <p> This can take a couple of minutes. </p>
+      <div layout="row" layout-align="center">
+        <md-switch class="md-primary RFAswitch" md-no-ink aria-label="Switch No Ink" ng-model="vm.useRFA" >
+          Input RFA
+        </md-switch>
       </div>
 
     </section>
