@@ -58,8 +58,8 @@
       html += '<p class="loading-message">This might take a couple of minutes.</p>';;
 
       return window.pleaseWait({
-        logo: "assets/images/pathgather.png",
-        backgroundColor: 'black',
+        logo: "assets/images/logo_small.gif",
+        backgroundColor: 'white',
         loadingHtml: html
       });
     }
