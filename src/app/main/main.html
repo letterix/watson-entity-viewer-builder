@@ -32,7 +32,7 @@
 
     </section>
 
-    <div class="results" layout="row" layout-sm="column" ng-show="vm.haveResults">
+    <div class="legend" layout="row" layout-sm="column" ng-show="vm.haveResults">
       <!--<div class="searchInfo" flex>Researchers ranked: {{ vm.entities.length }} <br>
                                    Displaying top {{ vm.entities.length }} results </div> -->
       <div flex></div>
@@ -65,7 +65,7 @@
 
     <br>
 
-    <div class="techs fade" ng-show="vm.haveResults">
+    <div class="results fade" ng-show="vm.haveResults">
       <md-card ng-repeat="entity in vm.entities" ng-click="vm.inspectEntity($event, entity)">
         <div flex layout="row">
           <md-card-content flex >

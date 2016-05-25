@@ -52,32 +52,12 @@ html {
   display: none;
 }
 
-
 [layout=row] {
   flex-direction: row;
 }
 
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
-}
-
 md-toolbar.md-default-theme {
   background-color: black;
-}
-
-section.jumbotron {
-  margin-bottom: 30px;
-  padding: 1px 30px;
-  text-align: center;
-
-  color: white;
-
-  h1 {
-    font-size: 3em;
-  }
 }
 
 .main-content {
@@ -85,13 +65,20 @@ section.jumbotron {
 }
 
 .search-header {
+  margin-bottom: 30px;
+  padding: 1px 30px;
+  text-align: center;
+  color: white;
+  font-size: 2em;
+
   form {
     height: 140px;
   }
+
   h1 {
     color: grey;
+    font-size: 3em;
   }
-  font-size: 2em;
 
   .search {
     width: 40%;
@@ -109,45 +96,52 @@ section.jumbotron {
       font-size: 0.8em;
     }
   }
-}
 
-.RFAswitch {
-  color: rgba(0,0,0,0.26);
-  font-size: 0.6em;
-}
-.RFAform {
-  .RFAinput {
-    position: relative;
-    width: 600px;
-    text-align: center;
-    color: grey;
+  .RFAswitch {
+    color: rgba(0,0,0,0.26);
     font-size: 0.6em;
   }
-  .RFAsubmit {
-    width: 120px;
-  }
-  .RFAinputError {
-    color: blue;
-    font-size: 0.7em;
+
+  .RFAform {
+    .RFAinput {
+      position: relative;
+      width: 600px;
+      text-align: center;
+      color: grey;
+      font-size: 0.6em;
+    }
+
+    .RFAsubmit {
+      width: 120px;
+    }
+
+    .RFAinputError {
+      color: blue;
+      font-size: 0.7em;
+    }
   }
 }
 
-.results {
+.legend {
   margin-left: 20px;
   margin-right: 20px;
+
   .searchInfo {
     font-size: 0.7em;
   }
+
   .titel {
-    font-size: 4em;
+    font-size: 3em;
     color: grey;
     text-align: center;
     vertical-align: center;
   }
+
   .info {
     float: right;
     font-size: 0.7em;
   }
+
   td.center {
     text-align: center;
     width: 35px;
@@ -158,7 +152,7 @@ section.jumbotron {
   color: #cccc00;
 }
 
-.techs {
+.results {
   display: flex;
   flex-flow: row wrap;
   -webkit-justify-content: center;
@@ -182,17 +176,20 @@ section.jumbotron {
         margin-top: 1px;
         margin-bottom: 5em;
       }
+
       .md-title {
         color: #00802b;
         margin-bottom: 0px;
         font-weight: bold;
       }
+
       .stats {
         position: absolute;
         bottom: 0px;
       }
     }
   }
+
   md-card:hover {
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     background-color: #f2f2f2;
@@ -200,6 +197,7 @@ section.jumbotron {
 }
 
 md-dialog {
+  min-width: 80%;
   .md-toolbar-tools {
     h1 {
       font-size: 1.4em;
@@ -211,6 +209,7 @@ md-dialog {
     h3 {
       margin-bottom: 2px;
     }
+
     p {
       margin-top: 0px;
     }
