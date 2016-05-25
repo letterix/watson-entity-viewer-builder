@@ -12,7 +12,7 @@
         </md-input-container>
       </form>
 
-      <form name='RFAform' ng-if='vm.useRFA' ng-submit="vm.rfa(RFAfile)">
+      <form name='RFAform' class='RFAform' ng-if='vm.useRFA' ng-submit="vm.rfa(RFAfile)">
         <md-input-container layout="row" layout-align="center center">
           <lf-ng-md-file-input name="file" class='RFAinput' lf-required lf-files='RFAfile' accept="text/plain" lf-mimetype="text/plain" lf-placeholder="input RFA"> </lf-ng-md-file-input>
         </md-input-container>
@@ -26,7 +26,7 @@
       </form>
 
       <div layout="row" layout-align="center">
-        <md-switch class="md-primary" md-no-ink aria-label="Switch No Ink" ng-model="vm.useRFA" >
+        <md-switch class="md-primary RFAswitch" md-no-ink aria-label="Switch No Ink" ng-model="vm.useRFA" >
           Input RFA
         </md-switch>
       </div>
@@ -62,7 +62,7 @@
     </div>
 
     <br>
-    
+
     <div class="techs">
       <md-card ng-repeat="entity in vm.entities" ng-click="vm.inspectEntity($event, entity)">
         <div flex layout="row">

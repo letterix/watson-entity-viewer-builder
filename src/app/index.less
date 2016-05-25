@@ -75,6 +75,51 @@ section.jumbotron {
   }
 }
 
+.main-content {
+  width: 100%;
+}
+
+.search-header {
+  h1 {
+    color: grey;
+  }
+  font-size: 2em;
+
+  .search {
+    width: 40%;
+    margin: auto;
+
+    .search-label {
+      position: relative;
+    }
+
+    .search-box {
+      position: relative;
+      text-align: center;
+    }
+  }
+}
+
+.RFAswitch {
+  color: rgba(0,0,0,0.26);
+  font-size: 0.6em;
+}
+.RFAform {
+  .RFAinput {
+    position: relative;
+    width: 600px;
+    text-align: center;
+    color: grey;
+  }
+  .RFAsubmit {
+    width: 120px;
+  }
+  .RFAinputError {
+    color: blue;
+    font-size: 0.7em;
+  }
+}
+
 .results {
   .titel {
     font-size: 4em;
@@ -86,10 +131,16 @@ section.jumbotron {
     float: right;
     font-size: 0.7em;
   }
+  td.center {
+    text-align: center;
+    width: 35px;
+  }
 }
+
 .fa-star {
   color: #cccc00;
 }
+
 .techs {
   display: flex;
   flex-flow: row wrap;
@@ -131,50 +182,23 @@ section.jumbotron {
   }
 }
 
-.main-content {
-  width: 100%;
-}
-
-.search-header {
-  h1 {
-    color: grey;
+md-dialog {
+  .md-toolbar-tools {
+    h1 {
+      font-size: 1.4em;
+      font-weight: bold;
+    }
   }
-  font-size: 2em;
-  .search {
-    width: 40%;
-    margin: auto;
+
+  .md-dialog-content {
+    h3 {
+      margin-bottom: 2px;
+    }
+    p {
+      margin-top: 0px;
+    }
   }
 }
-
-.search-label {
-  position: relative;
-}
-
-.search-box {
-  position: relative;
-  text-align: center;
-}
-
-// RFA input styling
-.md-primary {
-  color: rgba(0,0,0,0.26);
-  font-size: 0.6em;
-}
-
-.RFAinput {
-  position: relative;
-  width: 600px;
-  text-align: center;
-  color: grey;
-}
-.RFAsubmit {
-  width: 120px;
-}
-.RFAinputError {
-  color: blue;
-  font-size: 0.7em;
-}
-
 
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject
@@ -182,24 +206,3 @@ section.jumbotron {
  */
 // injector
 // endinjector
-
-.md-toolbar-tools {
-  h1 {
-    font-size: 1.4em;
-    font-weight: bold;
-  }
-}
-
-.md-dialog-content {
-  h3 {
-    margin-bottom: 2px;
-  }
-  p {
-    margin-top: 0px;
-  }
-}
-
-.center {
-  text-align: center;
-  width: 35px;
-}
